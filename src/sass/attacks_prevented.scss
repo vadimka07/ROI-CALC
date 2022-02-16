@@ -1,0 +1,132 @@
+.attacks-prevented {
+  margin-top: 120px;
+  &__title {
+    color: #000033;
+    font-size: 42px;
+    line-height: calc(46 / 42);
+    font-weight: 900;
+  }
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    list-style-type: none;
+    box-shadow: 3px 3px 10px rgba(197, 206, 216, 0.5);
+    padding: 37px;
+    margin-top: 60px;
+    grid-row-gap: 24px;
+    @media screen and (max-width: 991px){
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (max-width: 768px){
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item-text {
+    color: #FF5400;
+    font-size: 15px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    flex-grow: 1;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: relative;
+  }
+  &__container {
+    display: inline-block;
+    position: relative;
+  }
+  &__count {
+    color: #000033;
+    font-size: 42px;
+    font-weight: bolder;
+    flex-grow: 1;
+    letter-spacing: -1.5px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    border-right: 0.25px solid #C8C8D6;
+    position: relative;
+    @media screen and (max-width: 991px) {
+      border-right: none;
+      border-bottom: 0.25px solid #C8C8D6;
+      padding: 10px 115px;
+
+    }
+    @media screen and (max-width: 468px) {
+      padding: 10px 50px;
+
+    }
+    &:nth-child(3n) {
+      border-right: none;
+    }
+
+    &>img {
+      width: auto;
+      height: 70px;
+      object-fit: scale-down;
+    }
+  }
+  &__icon {
+    width: auto;
+    height: auto;
+    display: inline-block;
+    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+      + .attacks-prevented__pop-up {
+        visibility: visible;
+        pointer-events: auto;
+        width: 135px;
+        height: auto;
+      }
+    }
+  }
+  &__pop-up {
+    position: absolute;
+    background: #fff;
+    font-size: 10px;
+    color: #4F4D5C;
+    right: -138px;
+    top: -20px;
+    padding: 10px 17px 10px 11px;
+    text-align: left;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    text-transform: initial;
+    font-weight: 400;
+    z-index: 1;
+    letter-spacing: normal;
+    font-size: 10px;
+    line-height: 13px;
+    box-shadow: 3px 3px 10px rgba(197, 206, 216, 0.25);
+    @media screen  and (max-width: 991px){
+      display: none;
+    }
+    &.open {
+      visibility: visible;
+      pointer-events: auto;
+      width: 135px;
+      height: auto;
+      @media screen  and (max-width: 991px){
+        display: block;
+      }
+    }
+    &:before {
+      content: "";
+      border-top: 5px solid transparent;
+      border-right: 8px solid #fff;
+      border-bottom: 5px solid transparent;
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

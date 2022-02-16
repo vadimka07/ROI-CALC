@@ -1,0 +1,127 @@
+.hs-form-booleancheckbox label {
+  display: flex;
+  align-items: center;
+}
+.hs-form-booleancheckbox label input {
+  margin-right: 10px;
+}
+.hbs-form__calculator {
+  display: none !important;
+  background: #00000045;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  h2 {
+    font-weight: 900 !important;
+    font-size: 24px !important;
+    line-height: 27px;
+    letter-spacing: -1.065px !important;
+    margin: 0 0 35px;
+  }
+  .wpcf7-form-control-wrap {
+    display: block;
+    margin-bottom: 25px;
+  }
+  .hbspt-form {
+    width: 496px;
+    margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 50px 100px;
+    background: #fff;
+    display: block;
+    left: 0;
+    right: 0;
+
+    input {
+      border: none;
+      border-bottom: 1px solid #4F4D5C !important;
+      width: 100%;
+    }
+
+    .field {
+      margin-bottom: 50px;
+      font-size: 12px;
+    }
+
+    input[type="submit"] {
+      border: none;
+      color: #fff;
+      width: 100%;
+      height: 50px;
+      background-color: #FF5400;
+      border-radius: 5px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+  }
+  form {
+    background: #fff;
+    width: 458px;
+    margin: 0 auto;
+    // transform: translateY(50%);
+    max-width: 100%;
+    padding: 50px;
+    text-align: left;
+    @media screen and (max-width: 1080px){
+      padding: 25px;
+    }
+    input[type="submit"] {
+      border: none;
+      color: #fff;
+      width: 100%;
+      height: 50px;
+      background-color: #FF5400;
+      border-radius: 5px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+  }
+  &.open {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+#calculator {
+  .hbspt-form {
+    width: 496px;
+    margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    // transform: translateY(-50%);
+    padding: 50px 100px;
+    background: #fff;
+    display: block;
+    left: 0;
+    right: 0;
+
+    input {
+      border: none;
+      border-bottom: 1px solid #4F4D5C;
+      width: 100%;
+    }
+
+    .field {
+      margin-bottom: 50px;
+      font-size: 12px;
+    }
+
+    input[type="submit"] {
+      border: none;
+      color: #fff;
+      width: 100%;
+      height: 50px;
+      background-color: #FF5400;
+      border-radius: 5px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,384 @@
+// Base Colors
+$shade-10: #FF5400 !default;
+$shade-1: #FF5400 !default;
+$shade-0: #fff !default;
+$teal: #FF5400 !default;
+
+// Reset
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+
+
+// Range Slider
+$range-width: 100% !default;
+
+$range-handle-color: #FF5400 !default;
+$range-handle-color-hover: #FF5400 !default;
+$range-handle-size: 20px !default;
+
+$range-track-color: #FF5400 !default;
+$range-track-height: 10px !default;
+
+$range-label-color: #FF5400 !default;
+$range-label-width: 60px !default;
+
+.range-slider {
+  width: $range-width;
+}
+
+.range-slider__range {
+  -webkit-appearance: none;
+  width: calc(100% - (#{$range-label-width * 2 + 80px}));
+  height: $range-track-height;
+  border-radius: 5px;
+  background: $range-track-color;
+  outline: none;
+  padding: 0;
+  margin: 0;
+
+  // Range Handle
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: $range-handle-size;
+    height: $range-handle-size;
+    border-radius: 50%;
+    background: $range-handle-color;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+
+    &:hover {
+      background: $range-handle-color-hover;
+    }
+  }
+
+  &:active::-webkit-slider-thumb {
+    background: $range-handle-color-hover;
+  }
+
+  &::-moz-range-thumb {
+    width: $range-handle-size;
+    height: $range-handle-size;
+    border: 0;
+    border-radius: 50%;
+    background: $range-handle-color;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+
+    &:hover {
+      background: $range-handle-color-hover;
+    }
+  }
+
+  &:active::-moz-range-thumb {
+    background: $range-handle-color-hover;
+  }
+
+  // Focus state
+  &:focus {
+
+    &::-webkit-slider-thumb {
+      box-shadow: 0 0 0 3px $shade-0,
+      0 0 0 6px $teal;
+    }
+  }
+}
+
+#calculator {
+  .range-slider__range {
+    -webkit-appearance: none;
+    width: calc(100% - (#{$range-label-width * 2 + 80px}));
+    height: $range-track-height;
+    border-radius: 5px;
+    background: $range-track-color;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+
+    // Range Handle
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: $range-handle-size;
+      height: $range-handle-size;
+      border-radius: 50%;
+      background: $range-handle-color;
+      cursor: pointer;
+      transition: background .15s ease-in-out;
+
+      &:hover {
+        background: $range-handle-color-hover;
+      }
+    }
+
+    &:active::-webkit-slider-thumb {
+      background: $range-handle-color-hover;
+    }
+
+    &::-moz-range-thumb {
+      width: $range-handle-size;
+      height: $range-handle-size;
+      border: 0;
+      border-radius: 50%;
+      background: $range-handle-color;
+      cursor: pointer;
+      transition: background .15s ease-in-out;
+
+      &:hover {
+        background: $range-handle-color-hover;
+      }
+    }
+
+    &:active::-moz-range-thumb {
+      background: $range-handle-color-hover;
+    }
+
+    // Focus state
+    &:focus {
+
+      &::-webkit-slider-thumb {
+        box-shadow: 0 0 0 3px $shade-0,
+        0 0 0 6px $teal;
+      }
+    }
+  }
+}
+// Range Label
+.range-slider {
+  &__value {
+    display: inline-block;
+    position: relative;
+    width: $range-label-width;
+    color: #4F4D5C;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 3px;
+    background: #fff;
+    padding: 5px 10px;
+    margin-left: 8px;
+    text-transform: lowercase;
+  }
+  &__start-value {
+    width: 60px;
+    display: inline-block;
+  }
+}
+
+
+// Firefox Overrides
+::-moz-range-track {
+  background: $range-track-color;
+  border: 0;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+  border: 0;
+}
+
+.range-section {
+  margin-top: 76px;
+  color: #4F4D5C;
+  &__list {
+    margin-top: 34px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 34px 78px;
+    @media screen and (max-width: 991px){
+      grid-template-columns: 1fr;
+    }
+  }
+
+}
+
+.range-list {
+  list-style-type: none;
+
+  &__title {
+    text-transform: uppercase;
+    text-align: center;
+    color: #4F4D5C;
+    font-weight: bolder;
+    margin-right: 7px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  &__container-text {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__container-info {
+   position: relative;
+  }
+  &__pop-up {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    font-size: 10px;
+    z-index: 1;
+    position: relative;
+    box-shadow: 3px 3px 10px rgba(197, 206, 216, 0.25);
+    &.open {
+      visibility: visible;
+      height: auto;
+      width: 104px;
+      pointer-events: auto;
+      position: absolute;
+      background: #fff;
+      padding: 10px 8px 10px 17px;
+      top: -26px;
+      right: -108px;
+    }
+    &:before {
+      content: "";
+      border-top: 5px solid transparent;
+      border-right: 8px solid #fff;
+      border-bottom: 5px solid transparent;
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  &__icon {
+    width: 12px;
+    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+      + .range-list__pop-up {
+        visibility: visible;
+        height: auto;
+        width: 104px;
+        pointer-events: auto;
+        position: absolute;
+        background: #fff;
+        padding: 10px 8px 10px 17px;
+        top: -26px;
+        right: -108px;
+      }
+    }
+  }
+}
+#calculator {
+  .range-list {
+    list-style-type: none;
+
+    &__title {
+      text-transform: uppercase;
+      text-align: center;
+      color: #4F4D5C;
+      font-weight: bolder;
+      margin-right: 7px;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+    &__container-text {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &__container-info {
+      position: relative;
+    }
+    &__pop-up {
+      visibility: hidden;
+      height: 0;
+      width: 0;
+      pointer-events: none;
+      font-size: 10px;
+      z-index: 1;
+      position: relative;
+      box-shadow: 3px 3px 10px rgba(197, 206, 216, 0.25);
+      &.open {
+        visibility: visible;
+        height: auto;
+        width: 104px;
+        pointer-events: auto;
+        position: absolute;
+        background: #fff;
+        padding: 10px 8px 10px 17px;
+        top: -26px;
+        right: -108px;
+      }
+      &:before {
+        content: "";
+        border-top: 5px solid transparent;
+        border-right: 8px solid #fff;
+        border-bottom: 5px solid transparent;
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    &__icon {
+      width: 12px;
+      cursor: pointer;
+      &:hover {
+        cursor: pointer;
+        + .range-list__pop-up {
+          visibility: visible;
+          height: auto;
+          width: 104px;
+          pointer-events: auto;
+          position: absolute;
+          background: #fff;
+          padding: 10px 8px 10px 17px;
+          top: -26px;
+          right: -108px;
+        }
+      }
+    }
+  }
+  .enter-percent {
+    width: 50px;
+    text-align: center;
+    border: none;
+    box-shadow: 3px 3px 10px rgb(197 206 216 / 50%);
+    font-size: 12px;
+    padding: 7px 0;
+  }
+
+  .get-full-report {
+    text-transform: uppercase;
+    border: 2px solid #FF5400;
+    border-radius: 4px;
+    background: #fff;
+    color: rgba(255, 84, 0, 1);
+    padding: 13px;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 45px auto;
+    display: table;
+  }
+}
+
+.enter-percent {
+  width: 50px;
+  text-align: center;
+  border: none;
+  box-shadow: 3px 3px 10px rgb(197 206 216 / 50%);
+  font-size: 12px;
+  padding: 7px 0;
+}
+
+.get-full-report {
+  text-transform: uppercase;
+  border: 2px solid #FF5400;
+  border-radius: 4px;
+  background: #fff;
+  color: rgba(255, 84, 0, 1);
+  padding: 13px;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 45px auto;
+  display: table;
+}

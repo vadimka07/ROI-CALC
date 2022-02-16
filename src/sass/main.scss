@@ -1,0 +1,15 @@
+/*
+ * Главный файл стилей.
+ * Все паршалы подключаются сюда.
+ */
+
+// Стили для файла с примером HTML-фрагмента
+@import "./utils/normilize";
+@import "./utils/common";
+@import './form';
+@import "./form_result";
+@import "./range_part";
+@import "./attacks_prevented";
+@import "roi_metrics";
+@import "summary";
+@import "hbs_form";

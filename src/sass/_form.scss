@@ -1,0 +1,361 @@
+#roi-form {
+  input, select {
+    height: 46px;
+    color: #4F4D5C;
+    padding: 0 21px;
+    box-shadow: 3px 3px 10px rgba(197, 206, 216, 0.5);
+    border: none;
+    background-color: #fff;
+    width: 100%;
+    font-size: 12px;
+    @media screen and (max-width: 991px){
+      height: 78px;
+      text-transform: uppercase;
+    }
+  }
+  select {
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='9' viewBox='0 0 20 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L10.2258 8.5L19 1' stroke='%234F4D5C' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-position: calc(100% - 22px) center;
+    background-repeat: no-repeat;
+  }
+  input {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &[type=number] {
+      -moz-appearance: textfield;
+    }
+  }
+}
+
+.roi-form__error {
+  color: red;
+  font-size: 12px;
+  margin: 15px 0 0;
+  display: none;
+}
+
+.roi-form {
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  grid-column-gap: 28px;
+  grid-template-columns: repeat(5, 1fr);
+  @media screen and (max-width: 991px){
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 25px;
+  }
+  &__submit {
+    text-transform: uppercase;
+    border: 2px solid #FF5400;
+    border-radius: 4px;
+    background: #fff;
+    color: rgba(255, 84, 0, 1);
+    cursor: pointer;
+    height: 46px;
+    line-height: 1;
+    @media screen and (max-width: 991px){
+      height: 78px;
+      text-transform: uppercase;
+    }
+  }
+
+  label {
+    position: relative;
+    &[for=monthly-email-volume]{
+      display: none;
+    }
+  }
+
+  .roi-form__icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 80%;
+    &:hover {
+      cursor: pointer;
+      + .range-list__pop-up {
+        visibility: visible;
+        height: auto;
+        width: 104px;
+        pointer-events: auto;
+        position: absolute;
+        background: #fff;
+        padding: 10px 8px 10px 17px;
+        top: -26px;
+        right: -108px;
+      }
+    }
+  }
+}
+
+.full-report {
+  position: relative;
+
+  .result-query {
+    margin-top: 0;
+    padding: 29px 45px;
+
+    &__list-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .list-item {
+      border-right: none;
+      &__data {
+        margin-top: 0;
+        margin-left: 16px;
+        font-size: 24px;
+      }
+
+      &__title {
+        font-size: 15px;
+      }
+
+    }
+  }
+
+  .range-section {
+    &__text {
+      display: none;
+    }
+  }
+
+  .get-full-report {
+    display: none;
+  }
+
+  #roi-form {
+    grid-template-columns: repeat(4, 1fr);
+    @media screen and (max-width: 991px){
+      grid-template-columns: repeat(1, 1fr);
+      grid-row-gap: 25px;
+    }
+  }
+
+  .roi-form {
+    grid-template-columns: repeat(4, 1fr);
+    display: none;
+
+    &__submit {
+      display: none;
+    }
+
+    &__icon {
+      display: none;
+    }
+  }
+
+  .range-section {
+    display: none;
+  }
+
+}
+
+.full-report {
+  &.open {
+    box-shadow: 3px 3px 10px rgba(197, 206, 216, 0.5);
+    padding: 65px;
+    .range-section,
+    .full-report__icon,
+    .full-report__submit {
+      display: block;
+    }
+
+    .roi-form {
+      display: grid;
+    }
+
+    .result-query {
+      box-shadow: none;
+
+      &__list-item {
+        flex-direction: column;
+        border-right: 0.25px solid #C8C8D6;
+        .list-item {
+          &__data {
+            font-size: 42px;
+            margin-top: 35px;
+            margin-left: 0;
+          }
+        }
+      }
+
+    }
+    .toggle-arrow {
+      top: auto;
+      bottom: 25px;
+      transform: rotate(
+          -90deg);
+      background: #FF5400;
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+
+}
+
+
+#calculator {
+
+  .roi-form {
+    margin: 0 auto;
+    text-align: center;
+    display: grid;
+    grid-column-gap: 28px;
+    grid-template-columns: repeat(5, 1fr);
+    @media screen and (max-width: 991px){
+      grid-template-columns: repeat(1, 1fr);
+      grid-row-gap: 25px;
+    }
+    &__submit {
+      text-transform: uppercase;
+      border: 2px solid #FF5400;
+      border-radius: 4px;
+      background: #fff;
+      color: rgba(255, 84, 0, 1);
+      cursor: pointer;
+      @media screen and (max-width: 991px){
+        height: 78px;
+        text-transform: uppercase;
+      }
+    }
+
+    label {
+      position: relative;
+    }
+
+    .roi-form__icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 80%;
+      &:hover {
+        cursor: pointer;
+        + .range-list__pop-up {
+          visibility: visible;
+          height: auto;
+          width: 104px;
+          pointer-events: auto;
+          position: absolute;
+          background: #fff;
+          padding: 10px 8px 10px 17px;
+          top: -26px;
+          right: -108px;
+        }
+      }
+    }
+  }
+  .full-report {
+    position: relative;
+
+    .result-query {
+      margin-top: 0;
+      padding: 29px 45px;
+
+      &__list-item {
+        display: flex;
+        align-items: center;
+      }
+
+      .list-item {
+        border-right: none;
+        &__data {
+          margin-top: 0;
+          margin-left: 16px;
+          font-size: 24px;
+        }
+
+        &__title {
+          font-size: 15px;
+        }
+
+      }
+    }
+
+    .range-section {
+      &__text {
+        display: none;
+      }
+    }
+
+    .get-full-report {
+      display: none;
+    }
+
+    #roi-form {
+      grid-template-columns: repeat(4, 1fr);
+      @media screen and (max-width: 991px){
+        grid-template-columns: repeat(1, 1fr);
+        grid-row-gap: 25px;
+      }
+    }
+
+    .roi-form {
+      grid-template-columns: repeat(4, 1fr);
+      display: none;
+
+      &__submit {
+        display: none;
+      }
+
+      &__icon {
+        display: none;
+      }
+    }
+
+    .range-section {
+      display: none;
+    }
+
+  }
+
+  .full-report {
+    &.open {
+      box-shadow: 3px 3px 10px rgba(197, 206, 216, 0.5);
+      padding: 65px;
+      .range-section,
+      .full-report__icon,
+      .full-report__submit {
+        display: block;
+      }
+
+      .roi-form {
+        display: grid;
+      }
+
+      .result-query {
+        box-shadow: none;
+
+        &__list-item {
+          flex-direction: column;
+
+          .list-item {
+            &__data {
+              font-size: 42px;
+              margin-top: 35px;
+              margin-left: 0;
+            }
+          }
+        }
+
+      }
+      .toggle-arrow {
+        top: auto;
+        bottom: 25px;
+        transform: rotate(
+            -90deg);
+        background: #FF5400;
+        img {
+          filter: brightness(0) invert(1);
+        }
+      }
+    }
+
+  }
+}
