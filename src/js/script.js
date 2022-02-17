@@ -30,6 +30,7 @@ import { calculateROI } from './api.service';
 import './formaction';
 import './range-slider';
 import { fillForm } from "./formaction";
+import { refs } from "./refs";
 
 Chart.register( ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle );
 Chart.register( ChartDataLabels );
@@ -89,6 +90,11 @@ if ( openPopupInfoAttackPrevented ) {
   } );
 }
 
+if ( refs.savePDFBtn ) {
+  refs.savePDFBtn.addEventListener( 'click', () => {
+    window.print();
+  } )
+}
 
 // const barDiagram = document.getElementById( 'myChart' );
 // const circleDiagram = document.getElementById( 'myChart2' );

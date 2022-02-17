@@ -46,7 +46,7 @@ function getDataForm() {
   const formData = new FormData( refs.mainForm );
   const data = {};
   formData.forEach( ( value, key ) => {
-    data[key] = value;
+    data[ key ] = value;
   } );
   return data;
 }
@@ -54,36 +54,36 @@ function getDataForm() {
 export function fillForm() {
   const dataFromSessionStorage = JSON.parse( sessionStorage.getItem( 'formData' ) );
   for ( const key in dataFromSessionStorage ) {
-    if ( !!dataFromSessionStorage[key] && !!refs.mainForm.elements[key] ) {
-      refs.mainForm.elements[key].value = dataFromSessionStorage[key];
+    if ( !!dataFromSessionStorage[ key ] && !!refs.mainForm.elements[ key ] ) {
+      refs.mainForm.elements[ key ].value = dataFromSessionStorage[ key ];
     }
   }
   return dataFromSessionStorage;
 }
 
-function lockEmailVol(event) {
-  const checkInputs = ['Country', 'Industry', 'NumberOfEmployees'];
+function lockEmailVol( event ) {
+  const checkInputs = [ 'Country', 'Industry', 'NumberOfEmployees' ];
   let inputValues = [];
-  checkInputs.forEach(name => {
+  checkInputs.forEach( name => {
     inputValues.push(
-      refs.mainForm.elements[name].value !== ''
+      refs.mainForm.elements[ name ].value !== ''
     );
-  })
-  if (inputValues.every(value => value === true)) {
-    refs.inputMonthlyEmailVolume.removeAttribute('readonly');
-    refs.inputMonthlyEmailVolume.closest('label').style.display = 'block';
+  } )
+  if ( inputValues.every( value => value === true ) ) {
+    refs.inputMonthlyEmailVolume.removeAttribute( 'readonly' );
+    refs.inputMonthlyEmailVolume.closest( 'label' ).style.display = 'block';
   } else {
-    refs.inputMonthlyEmailVolume.setAttribute('readonly', true);
-    refs.inputMonthlyEmailVolume.closest('label').style.display = 'none';
+    refs.inputMonthlyEmailVolume.setAttribute( 'readonly', true );
+    refs.inputMonthlyEmailVolume.closest( 'label' ).style.display = 'none';
   }
 }
 
-refs.mainForm.addEventListener('input', lockEmailVol);
-refs.mainForm.addEventListener('change', lockEmailVol);
+refs.mainForm.addEventListener( 'input', lockEmailVol );
+refs.mainForm.addEventListener( 'change', lockEmailVol );
 
 
-refs.mainForm.addEventListener('submit', async (e) => {
-  let roiFormError = document.querySelector('.roi-form__error');
+refs.mainForm.addEventListener( 'submit', async ( e ) => {
+  let roiFormError = document.querySelector( '.roi-form__error' );
   e.preventDefault();
   const data = getDataForm();
   if ( data.NumberOfEmployees > 2000000 ) {
@@ -135,15 +135,18 @@ function getRangeData() {
       // if ( 'correctValue' in range.dataset ) {
       //   value = value / range.dataset.correctValue;
       // }
-      data[range.name] = correctValueAfterChange( range );
+      data[ range.name ] = correctValueAfterChange( range );
     }
   } );
   return data;
 }
 
+let chartBar;
+let chartCircle;
+
 function buildContent( data ) {
 
-  refs.threeYearsROIDollars.textContent = '$' + new Intl.NumberFormat('en-EN').format(data.ThreeYearsROIDollars);
+  refs.threeYearsROIDollars.textContent = '$' + new Intl.NumberFormat( 'en-EN' ).format( data.ThreeYearsROIDollars );
   refs.threeYearsROIPercents.textContent = data.ThreeYearsROIPercents.toFixed( 2 ) + '%';
   refs.paybackPeriodMonths.textContent = data.PaybackPeriodMonths;
   //
@@ -151,22 +154,22 @@ function buildContent( data ) {
 
     const range = item.querySelector( '[type=range]' );
     const input = item.querySelector( '[name=enterPercent]' );
-    range.value = correctValue( range, data[range.name] );
-    if ('nextsymbol' in input.dataset) {
-      input.value = correctValue( input, data[range.name] ).toFixed( 1 ) + input.dataset.nextsymbol;
+    range.value = correctValue( range, data[ range.name ] );
+    if ( 'nextsymbol' in input.dataset ) {
+      input.value = correctValue( input, data[ range.name ] ).toFixed( 1 ) + input.dataset.nextsymbol;
     } else {
-      input.value = correctValue( input, data[range.name] ).toFixed( 1 );
+      input.value = correctValue( input, data[ range.name ] ).toFixed( 1 );
     }
   } );
   if ( refs.attacksPreventedList ) {
     function renderDataROI( listSaveData, selectorForData ) {
-      const resultListData = [...listSaveData.children].map( ( element ) => {
+      const resultListData = [ ...listSaveData.children ].map( ( element ) => {
         if ( data.hasOwnProperty( element.dataset.name ) ) {
-          return data[element.dataset.name];
+          return data[ element.dataset.name ];
         }
       } );
-      [...listSaveData.children].forEach( ( item, index ) => {
-        item.querySelector( selectorForData ).textContent =  new Intl.NumberFormat('en-EN').format(resultListData[index]);
+      [ ...listSaveData.children ].forEach( ( item, index ) => {
+        item.querySelector( selectorForData ).textContent = new Intl.NumberFormat( 'en-EN' ).format( resultListData[ index ] );
       } );
     }
 
@@ -176,8 +179,8 @@ function buildContent( data ) {
       const renderDataROIMetricsNetThreeYearThreatReductionSavings = document.querySelector( '[data-name=NetThreeYearThreatReductionSaving]' );
       const renderDataROIMetricsThreeYearDirectSOCRelatedSavings = document.querySelector( '[data-name=ThreeYearsSOCRelatedSavings]' );
       const renderDataROIMetricsSOCFTESaved = document.querySelector( '[data-name=SOCFTESaved]' );
-      renderDataROIMetricsNetThreeYearThreatReductionSavings.querySelector( '.roi-metrics__data' ).textContent = new Intl.NumberFormat('en-EN').format(data.NetThreeYearThreatReductionSavings.third_year);
-      renderDataROIMetricsThreeYearDirectSOCRelatedSavings.querySelector( '.roi-metrics__data' ).textContent = new Intl.NumberFormat('en-EN').format(data.ThreeYearDirectSOCRelatedSavings.third_year);
+      renderDataROIMetricsNetThreeYearThreatReductionSavings.querySelector( '.roi-metrics__data' ).textContent = new Intl.NumberFormat( 'en-EN' ).format( data.NetThreeYearThreatReductionSavings.third_year );
+      renderDataROIMetricsThreeYearDirectSOCRelatedSavings.querySelector( '.roi-metrics__data' ).textContent = new Intl.NumberFormat( 'en-EN' ).format( data.ThreeYearDirectSOCRelatedSavings.third_year );
       renderDataROIMetricsSOCFTESaved.querySelector( '.roi-metrics__data' ).textContent = data.SOCFTESaved.toFixed( 1 );
     }
 
@@ -190,34 +193,39 @@ function buildContent( data ) {
       const renderDataTotalSavings = document.querySelector( '[data-name=TotalSavings]' );
       const renderDataTotalCostOfOwnership = document.querySelector( '[data-name=TotalCostOfOwnership]' );
       const renderDataNPV = document.querySelector( '[data-name=NPV]' );
-      renderDataThreeYearsROIDollars.querySelector( '.summary__data' ).textContent = new Intl.NumberFormat('en-EN').format(data.ThreeYearsROIDollars);
+      renderDataThreeYearsROIDollars.querySelector( '.summary__data' ).textContent = new Intl.NumberFormat( 'en-EN' ).format( data.ThreeYearsROIDollars );
       renderDataThreeYearsROIPercents.querySelector( '.summary__data' ).textContent = data.ThreeYearsROIPercents.toFixed( 2 );
       renderDataPaybackPeriodMonths.querySelector( '.summary__data' ).textContent = data.PaybackPeriodMonths;
-      renderDataTotalSavings.querySelector( '.summary__data' ).textContent = new Intl.NumberFormat('en-EN').format(data.TotalSavings.third_year);
-      renderDataTotalCostOfOwnership.querySelector( '.summary__data' ).textContent = new Intl.NumberFormat('en-EN').format(data.TotalCostOfOwnership.third_year);
-      renderDataNPV.querySelector( '.summary__data' ).textContent = new Intl.NumberFormat('en-EN').format(data.NPV);
+      renderDataTotalSavings.querySelector( '.summary__data' ).textContent = new Intl.NumberFormat( 'en-EN' ).format( data.TotalSavings.third_year );
+      renderDataTotalCostOfOwnership.querySelector( '.summary__data' ).textContent = new Intl.NumberFormat( 'en-EN' ).format( data.TotalCostOfOwnership.third_year );
+      renderDataNPV.querySelector( '.summary__data' ).textContent = new Intl.NumberFormat( 'en-EN' ).format( data.NPV );
     }
 
     renderDataSummary();
   }
   const barDiagram = document.getElementById( 'myChart' );
   const circleDiagram = document.getElementById( 'myChart2' );
+
+
   if ( barDiagram ) {
-    new Chart( barDiagram, {
-      type: 'bar',
-      data: {
-        labels: ['Year 1', 'Year 2', 'Year 3'],
+    if ( chartBar instanceof Chart ) {
+      chartBar.destroy();
+    }
+    chartBar = new Chart( barDiagram, {
+      type:    'bar',
+      data:    {
+        labels:   [ 'Year 1', 'Year 2', 'Year 3' ],
         datasets: [
           {
-            label: 'Savings',
-            data: [1.392, 2.787, 4.182],
+            label:           'Savings',
+            data:            [ data.CumulativeSaving.first_year, data.CumulativeSaving.second_year, data.CumulativeSaving.third_year ],
             backgroundColor: [
               '#ff4500',
             ],
           },
           {
-            label: 'Costs',
-            data: [-0.392, -0.787, -1.182],
+            label:           'Costs',
+            data:            [ -0.392, -0.787, -1.182 ],
             backgroundColor: [
               '#13132B',
 
@@ -225,16 +233,16 @@ function buildContent( data ) {
 
           },
           {
-            type: 'line',
-            label: 'Cumulative savings',
-            data: [data.CumulativeSaving.first_year, data.CumulativeSaving.second_year, data.CumulativeSaving.third_year],
+            type:            'line',
+            label:           'Cumulative savings',
+            data:            [ data.CumulativeSaving.first_year, data.CumulativeSaving.second_year, data.CumulativeSaving.third_year ],
             backgroundColor: [
               '#979797',
             ],
-            datalabels: {
-              display: true,
-              color: '#FF5400',
-              align: 'top',
+            datalabels:      {
+              display:   true,
+              color:     '#FF5400',
+              align:     'top',
               formatter: function ( value ) {
                 return '$' + value;
               },
@@ -244,13 +252,13 @@ function buildContent( data ) {
         ],
       },
       options: {
-        title: {
-          display: true,
-          text: 'ROI  - Annual Breakdown\n',
-          position: 'top',
+        title:           {
+          display:   true,
+          text:      'ROI  - Annual Breakdown\n',
+          position:  'top',
           fontColor: 'red',
         },
-        scales: {
+        scales:          {
           x: {
             stacked: true,
             // display: false,
@@ -261,10 +269,10 @@ function buildContent( data ) {
           y: {
             stacked: true,
 
-            grid: {
-              display: true,
+            grid:  {
+              display:    true,
               drawBorder: false,
-              color: function ( context ) {
+              color:      function ( context ) {
                 if ( context.tick.value === 0 ) {
                   return '#4F4D5C';
                 }
@@ -272,47 +280,48 @@ function buildContent( data ) {
             },
             ticks: {
               callback: function ( value ) {
-                return '$' + value + 'k';
+                value = value / 1000;
+                return '$' + new Intl.NumberFormat( 'en-EN' ).format( value ) + 'k';
               },
             },
 
           },
 
         },
-        plugins: {
-          title: {
-            display: true,
-            text: 'ROI  - Annual Breakdown\n',
+        plugins:         {
+          title:      {
+            display:  true,
+            text:     'ROI  - Annual Breakdown\n',
             position: 'top',
-            color: '#FF5400',
-            padding: 40,
-            align: 'start',
-            font: {
-              size: 15,
+            color:    '#FF5400',
+            padding:  40,
+            align:    'start',
+            font:     {
+              size:   15,
               weight: 'bold',
             },
           },
-          subtitle: {
+          subtitle:   {
             display: true,
-            text: 'Thousands',
-            color: '#4F4D5C',
-            align: 'start',
+            text:    'Thousands',
+            color:   '#4F4D5C',
+            align:   'start',
             padding: 20,
-            font: {
-              size: 15,
+            font:    {
+              size:   15,
               weight: 'bold',
             },
           },
-          legend: {
+          legend:     {
             labels: {
               usePointStyle: true,
-              padding: 50,
+              padding:       50,
             },
 
             position: 'bottom',
           },
-          tooltip: {
-            enabled: false,
+          tooltip:    {
+            enabled:  false,
             position: 'nearest',
           },
           datalabels: {
@@ -320,60 +329,75 @@ function buildContent( data ) {
           },
         },
         maxBarThickness: 64,
-        minBarLength: 10,
+        minBarLength:    10,
       },
     } );
   }
 
   if ( circleDiagram ) {
-    const myChart2 = new Chart( circleDiagram, {
-      type: 'doughnut',
-      data: {
-        labels: [
+    if ( chartCircle instanceof Chart ) {
+      chartCircle.destroy();
+    }
+    chartCircle = new Chart( circleDiagram, {
+      type:    'doughnut',
+      data:    {
+        labels:   [
           'Threat reduction savings',
           'SOC-related savings',
         ],
-        datasets: [{
-          label: 'My First Dataset',
-          data: [(data.SavingsByTypeOfThreatReduction * 100).toFixed(2), (data.SavingsBySOCReduction * 100).toFixed(2)],
+        datasets: [ {
+          label:           'My First Dataset',
+          data:            [ data.SavingsByTypeOfThreatReduction, data.SavingsBySOCReduction ],
           backgroundColor: [
             '#000033',
             '#FF5400',
           ],
           // hoverOffset: 4,
-        }],
+        } ],
       },
       options: {
         plugins: {
-          title: {
-            display: true,
-            text: 'ROI Savings - by Type of Saving\n',
+          title:      {
+            display:  true,
+            text:     'ROI Savings - by Type of Saving\n',
             position: 'top',
-            color: '#FF5400',
-            align: 'start',
-            padding: 40,
-            font: {
-              size: 15,
+            color:    '#FF5400',
+            align:    'start',
+            padding:  40,
+            font:     {
+              size:   15,
               weight: 'bold',
             },
           },
-          legend: {
-            labels: {
+          legend:     {
+            labels:   {
               usePointStyle: true,
-              padding: 20,
+              padding:       30,
             },
-            fullSize: true,
+            // fullSize: true,
             position: 'bottom',
           },
-          tooltip: {
-            enabled: false,
+          tooltip:    {
+            enabled:  false,
             position: 'nearest',
           },
           datalabels: {
-            color: '#ffffff',
+            color:     '#ffffff',
+            formatter: ( value, ctx ) => {
+              let sum = 0;
+              let dataArr = ctx.chart.data.datasets[ 0 ].data;
+              dataArr.map( data => {
+                sum += data;
+              } );
+              let percentage = ( value * 100 / sum ).toFixed( 1 ) + "%";
+              return percentage;
+            },
+            font:      {
+              family: "Circular Pro, Sans-serif"
+            }
           },
         },
-        cutout: '80%',
+        cutout:  '75%',
       },
     } );
   }

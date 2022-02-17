@@ -20,5 +20,6 @@ export const refs = {
   roiMetricsList: document.querySelector('.roi-metrics__list'),
   summaryList: document.querySelector('.summary__list'),
   hbsFormSubmit: document.querySelector('.hbs-form__calculator input[type=submit]'),
-  formFullReport: document.querySelector('.full-report')
+  formFullReport: document.querySelector('.full-report'),
+  savePDFBtn: document.querySelector('.summary__download')
 }

@@ -46,8 +46,7 @@ npm run dev
 версии файлов раздаются из папки `/root` ветки `gh-pages`.
 
 Через какое-то время живую страницу можно будет посмотреть по адресу указанному в отредактированном
-свойстве `homepage`, например
-[https://goitacademy.github.io/parcel-project-template](https://goitacademy.github.io/parcel-project-template).
+свойстве `homepage`.
 
 ## Файлы и папки
 

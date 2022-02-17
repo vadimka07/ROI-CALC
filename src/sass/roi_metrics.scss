@@ -58,7 +58,7 @@
       flex-direction: column;
     }
     &__diagram1 {
-      padding: 0 35px 25px;
+      padding: 0 35px 45px;
       box-shadow: 3px 3px 10px rgb(197 206 216 / 50%);
       width: 604px;
       height: 472px;
@@ -72,11 +72,12 @@
       box-shadow: 3px 3px 10px rgba(197, 206, 216, 0.5);
       width: 460px;
       height: 472px;
-      padding: 0 30px;
+      padding: 0 0 0 30px;
       box-sizing: border-box;
       @media screen and (max-width: 991px){
         width: 100% !important;
         margin-top: 24px !important;
+        padding: 0 30px 30px;
       }
     }
   }
